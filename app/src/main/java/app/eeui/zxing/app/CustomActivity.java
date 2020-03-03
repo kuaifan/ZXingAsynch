@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.zxing.BarcodeFormat;
+
 /**
  * 自定义扫码：当直接使用CaptureActivity
  * 自定义扫码，切记自定义扫码需在{@link Activity}或者{@link Fragment}相对应的生命周期里面调用{@link #mCaptureHelper}对应的生命周期
@@ -97,11 +99,12 @@ public class CustomActivity extends AppCompatActivity implements OnCaptureCallba
 
     /**
      * 扫码结果回调
+     * @param format 类型
      * @param result 扫码结果
      * @return
      */
     @Override
-    public boolean onResultCallback(String result) {
+    public boolean onResultCallback(BarcodeFormat format, String result) {
         if(isContinuousScan){
             Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
         }

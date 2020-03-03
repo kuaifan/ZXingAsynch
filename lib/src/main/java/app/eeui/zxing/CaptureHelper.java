@@ -543,9 +543,10 @@ public class CaptureHelper implements CaptureLifecycle,CaptureTouchEvent,Capture
      */
     public void onResult(Result result){
         final String text = result.getText();
+        final BarcodeFormat format = result.getBarcodeFormat();
         if(isContinuousScan){
             if(onCaptureCallback!=null){
-                onCaptureCallback.onResultCallback(text);
+                onCaptureCallback.onResultCallback(format, text);
             }
             if(isAutoRestartPreviewAndDecode){
                 restartPreviewAndDecode();
@@ -556,11 +557,12 @@ public class CaptureHelper implements CaptureLifecycle,CaptureTouchEvent,Capture
         if(isPlayBeep){//如果播放音效，则稍微延迟一点，给予播放音效时间
             captureHandler.postDelayed(() -> {
                 //如果设置了回调，并且onCallback返回为true，则表示拦截
-                if(onCaptureCallback!=null && onCaptureCallback.onResultCallback(text)){
+                if(onCaptureCallback!=null && onCaptureCallback.onResultCallback(format, text)){
                     return;
                 }
                 Intent intent = new Intent();
                 intent.putExtra(Intents.Scan.RESULT,text);
+                intent.putExtra(Intents.Scan.RESULT_FORMAT,format);
                 activity.setResult(Activity.RESULT_OK,intent);
                 activity.finish();
             },100);
@@ -568,11 +570,12 @@ public class CaptureHelper implements CaptureLifecycle,CaptureTouchEvent,Capture
         }
 
         //如果设置了回调，并且onCallback返回为true，则表示拦截
-        if(onCaptureCallback!=null && onCaptureCallback.onResultCallback(text)){
+        if(onCaptureCallback!=null && onCaptureCallback.onResultCallback(format, text)){
             return;
         }
         Intent intent = new Intent();
         intent.putExtra(Intents.Scan.RESULT,text);
+        intent.putExtra(Intents.Scan.RESULT_FORMAT,format);
         activity.setResult(Activity.RESULT_OK,intent);
         activity.finish();
     }

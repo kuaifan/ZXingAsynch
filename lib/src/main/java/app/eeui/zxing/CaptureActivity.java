@@ -26,6 +26,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.zxing.BarcodeFormat;
+
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
@@ -150,11 +152,12 @@ public class CaptureActivity extends AppCompatActivity implements OnCaptureCallb
 
     /**
      * 接收扫码结果回调
+     * @param format 类型
      * @param result 扫码结果
      * @return 返回true表示拦截，将不自动执行后续逻辑，为false表示不拦截，默认不拦截
      */
     @Override
-    public boolean onResultCallback(String result) {
+    public boolean onResultCallback(BarcodeFormat format, String result) {
         return false;
     }
 }

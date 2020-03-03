@@ -27,6 +27,8 @@ import app.eeui.zxing.camera.FrontLightMode;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.zxing.BarcodeFormat;
+
 /**
  * 自定义继承CaptureActivity
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -67,16 +69,17 @@ public class CustomCaptureActivity extends CaptureActivity {
 
     /**
      * 扫码结果回调
+     * @param format 类型
      * @param result 扫码结果
      * @return
      */
     @Override
-    public boolean onResultCallback(String result) {
+    public boolean onResultCallback(BarcodeFormat format, String result) {
         if(isContinuousScan){//连续扫码时，直接弹出结果
             Toast.makeText(this,result,Toast.LENGTH_SHORT).show();
         }
 
-        return super.onResultCallback(result);
+        return super.onResultCallback(format, result);
     }
 
     public void onClick(View v){
