@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+
+//添加
+publish {
+    userOrg = 'kuaifan'//bintray.com用户名
+    groupId = 'app.eeui'//jcenter上的路径
+    artifactId = 'zxing'//项目名称
+    publishVersion = app_version.versionName//版本号
+    desc = 'ZXing for Android Asynch'//描述
+    website = 'https://github.com/kuaifan/ZXingAsynch'//网站
+}
