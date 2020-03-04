@@ -562,7 +562,7 @@ public class CaptureHelper implements CaptureLifecycle,CaptureTouchEvent,Capture
                 }
                 Intent intent = new Intent();
                 intent.putExtra(Intents.Scan.RESULT,text);
-                intent.putExtra(Intents.Scan.RESULT_FORMAT,format);
+                intent.putExtra(Intents.Scan.RESULT_FORMAT,format.name());
                 activity.setResult(Activity.RESULT_OK,intent);
                 activity.finish();
             },100);
@@ -575,7 +575,7 @@ public class CaptureHelper implements CaptureLifecycle,CaptureTouchEvent,Capture
         }
         Intent intent = new Intent();
         intent.putExtra(Intents.Scan.RESULT,text);
-        intent.putExtra(Intents.Scan.RESULT_FORMAT,format);
+        intent.putExtra(Intents.Scan.RESULT_FORMAT,format.name());
         activity.setResult(Activity.RESULT_OK,intent);
         activity.finish();
     }
